@@ -73,6 +73,10 @@ jobs:
             **/build/reports/lint-results-*.xml
           if-no-files-found: error
           retention-days: 14
+        - uses: MeilCli/common-lint-reporter@v0
+          with:
+            report_type: 'check_run'
+            report_name: 'Lint Report'
   detekt:
     runs-on: ubuntu-latest
     steps:
