@@ -73,3 +73,18 @@ jobs:
             **/build/reports/lint-results-*.xml
           if-no-files-found: error
           retention-days: 14
+  detekt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint with detekt
+        run: ./gradlew detekt
+      - name: Upload results Artifact
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: results
+          path: |
+            **/build/reports/detekt/**/*
+          if-no-files-found: error
+          retention-days: 14
