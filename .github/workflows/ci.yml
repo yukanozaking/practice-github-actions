@@ -72,17 +72,17 @@ jobs:
 #        with:
 #          xml_path: '**/build/reports/lint-results-*.xml'
 #
-#      # アーティファクトへアップロード
-#      - name: Upload results Artifact
-#        uses: actions/upload-artifact@v2
-#        if: success() || failure()
-#        with:
-#          name: results
-#          path: |
-#            **/build/reports/lint-results-*.html
-#            **/build/reports/lint-results-*.xml
-#          if-no-files-found: error
-#          retention-days: 14
+      # アーティファクトへアップロード
+      - name: Upload results Artifact
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: results
+          path: |
+            **/build/reports/lint-results-*.html
+            **/build/reports/lint-results-*.xml
+          if-no-files-found: error
+          retention-days: 14
   detekt:
     runs-on: ubuntu-latest
     steps:
