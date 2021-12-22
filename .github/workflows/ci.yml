@@ -55,6 +55,15 @@ jobs:
       # 静的解析
       - name: Run Inspection
         run: ./gradlew lint
+      - uses: MeilCli/common-lint-reporter/transformer/androidlint@v0
+        with:
+          report_files: |
+            android_lint.xml
+            - uses: MeilCli/common-lint-reporter/operator/filter-by-file-changed@v0
+            - uses: MeilCli/common-lint-reporter@v0
+              with:
+                report_type: 'check_run'
+                report_name: 'Lint Report'
 
       # 結果の表示
       - name: Show results on GitHub
