@@ -59,11 +59,12 @@ jobs:
         with:
           report_files: |
             **/build/reports/lint-results-*.xml
-            - uses: MeilCli/common-lint-reporter/operator/filter-by-file-changed@v0
-            - uses: MeilCli/common-lint-reporter@v0
-              with:
-                report_type: 'check_run'
-                report_name: 'Lint Report'
+      - uses: MeilCli/common-lint-reporter/operator/filter-by-file-changed@v0
+      - name: Report lint result
+        uses: MeilCli/common-lint-reporter@v0
+        with:
+          report_type: 'check_run'
+          report_name: 'Lint Report'
 
       # 結果の表示
       - name: Show results on GitHub
