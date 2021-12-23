@@ -25,6 +25,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        lintConfig file(rootProject.file('lint.xml'))
+        abortOnError false
+        xmlReport true
+        checkGeneratedSources true
+        checkDependencies true
+        xmlOutput rootProject.file("build/reports/lint/lint-results-${projectFullPath(project)}.xml")
+        htmlOutput rootProject.file("build/reports/lint/lint-results-${projectFullPath(project)}.html")
+        disable 'SmallSp',
+                'UseSparseArrays',
+                'ContentDescription',
+                'AllowBackup'
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -63,4 +76,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+}
+
+def projectFullPath(Project project) {
+    if (project.name == "PracticeGitHubActions") {
+        return ""
+    } else if (project.parent?.name == "PracticeGitHubActions") {
+        return project.name
+    }
+    "${projectFullPath(project.parent)}-${project.name}"
 }
