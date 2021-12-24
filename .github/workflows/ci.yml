@@ -82,6 +82,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Lint with detekt
         run: ./gradlew detekt
+        continue-on-error: true
       - uses: MeilCli/common-lint-reporter/transformer/checkstyle@v0
         with:
           report_files: |
