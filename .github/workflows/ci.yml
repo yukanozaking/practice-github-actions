@@ -91,7 +91,7 @@ jobs:
       - uses: MeilCli/common-lint-reporter@v0
         with:
           report_type: 'check_run'
-          report_name: 'Lint Report'
+          report_name: 'Detekt Report'
       - name: Upload results Artifact
         uses: actions/upload-artifact@v2
         if: failure()
